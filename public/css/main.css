@@ -1,0 +1,38 @@
+#mapid {
+    height: 180px;
+}
+
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#mainContainer {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: scroll;
+}
+
+#image-gallery {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 2048px;
+    width: 2222px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 2048px;
+    width: 2222px;
+    /*background-color: rgba(0, 100, 100, 0.4);*/
+}
