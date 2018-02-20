@@ -11,7 +11,7 @@ const basic = auth.basic({
 });
 const authMiddleware = auth.connect(basic);
 
-http.listen(8007, function () {
+http.listen(80, function () {
     console.log('listening on *:80');
 });
 
