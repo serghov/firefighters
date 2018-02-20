@@ -7,8 +7,20 @@ import './interface.js';
 R.start();
 R.Text3D.loadFont("./fonts/Product_sans_regular.json");
 R.Text3D.loadFont("./fonts/Product_sans_bold.json");
-console.log(R);
+// console.log(R);
+// R.GamePad.oculusTouchRight.on(R.CONST.GAMEPAD_BUTTON_DOWN, (evt) => {
+//     console.log(R.GamePad.oculusTouchRight.sculpt._threeObject.children[1].position.valueOf());
+//     R.GamePad.oculusTouchRight.sculpt._threeObject.children[1].position.set(0,0,0);
+//     console.log(R.GamePad.oculusTouchRight.sculpt._threeObject.children[1].position.valueOf());
+// });
 
+const calibrate = function(evt){
+    evt.target.sculpt._threeObject.children[1].position.set(0,0,0);
+    console.log("calibrating...");
+    evt.target.removeEventListener(R.CONST.UPDATE, calibrate)
+};
+R.GamePad.oculusTouchRight.on(R.CONST.UPDATE, calibrate);
+R.GamePad.oculusTouchLeft.on(R.CONST.UPDATE, calibrate);
 
 
 clouds.on(R.CONST.READY, (evt) => {

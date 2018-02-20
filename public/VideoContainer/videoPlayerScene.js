@@ -22,9 +22,12 @@ export class VideoPlayerScene {
         });
 
         let screen = new R.Sculpt(new THREE.Mesh(new THREE.PlaneBufferGeometry(3.820, 2.160), material));
-
+        if(R.Scene.panel){
+            R.Scene.panel.parent = null;
+        }
         screen.position.set(0, 1.4, -4);
         R.Scene.add(screen);
+        R.Scene.screen = screen;
         screen.player = player;
         player.play();
 

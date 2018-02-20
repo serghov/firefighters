@@ -1,6 +1,7 @@
 import * as R from 'rodin/main';
 
 const data = [
+    {time: " ", tempF:  " ", clouds: 0, rain: 0, snow: 0},
     {time: "7a", tempF: "87°", clouds: 0, rain: 0, snow: 0},
     {time: "8a", tempF: "89°", clouds: 0, rain: 0, snow: 0},
     {time: "9a", tempF: "90°", clouds: 1, rain: 0, snow: 0},
@@ -90,7 +91,14 @@ export class Timeline extends R.Sculpt {
             }
             sky.engagedInclination = sky.effectController.inclination;
             navigator.mouseGamePad.stopPropagationOnMouseMove = true;
-            //console.log(e.point)
+            // console.log(points)
+            // if(points.length > 0){
+            //     for(let i = 0; i < points.length; i++){
+            //         const p = points[i];
+            //
+            //         console.log(p.position.valueOf());
+            //     }
+            // }
 
         });
         this.on(R.CONST.GAMEPAD_BUTTON_UP, (e) => {
@@ -99,8 +107,10 @@ export class Timeline extends R.Sculpt {
         });
         for(let i = 0; i <data.length; i++){
             const pivot = new R.Sculpt();
-            this.add(pivot);
-            points[i] = new R.Sphere(2, new THREE.MeshBasicMaterial({wireframe:true}));
+            if(i>0){
+                this.add(pivot);
+            }
+            //points[i] = new R.Sphere(2, new THREE.MeshBasicMaterial({wireframe:true}));
             //{time: 7, tempF: "30°", clouds: 0, rain: 0, snow: 0}
 
             const time = new R.Text3D(
@@ -125,26 +135,25 @@ export class Timeline extends R.Sculpt {
                 }
             );
 
-            const timeTemp = new R.Sculpt()
+            const timeTemp = new R.Sculpt();
             points[i] = new R.Sculpt();
             points[i].add(timeTemp);
-            timeTemp.add(time);
-            timeTemp.add(temp);
 
             pivot.add(points[i]);
             points[i].position.z = -67;
-            pivot.rotation.y =-(i-1) *((5*Math.PI/4)/14)-0.025;
+            pivot.rotation.y =-(i-2) *((5*Math.PI/4)/14)-0.025;
             time.on(R.CONST.READY, (e) => {
                 timeTemp.parent = R.Scene.active;
                 timeTemp.rotation.set(0,0,0);
+                timeTemp.add(time);
             });
             temp.on(R.CONST.READY, (e) => {
                 e.target.position.y = -4;
                 timeTemp.parent = R.Scene.active;
                 timeTemp.rotation.set(0,0,0);
+                timeTemp.add(temp);
             });
         }
-
     }
 }
 
