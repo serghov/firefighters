@@ -57,6 +57,7 @@ let panel = new R.Plane(w, h, new THREE.MeshBasicMaterial({color: 0x223341}));
 
 let showData = function(data, pos){
     if(R.Scene.screen){
+        if(R.Scene.screen.player) R.Scene.screen.player.pause();
         R.Scene.screen.parent = null;
     }
     // console.log(panel);
